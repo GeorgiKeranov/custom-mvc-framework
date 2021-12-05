@@ -1,10 +1,12 @@
 <?php
 
-class Router {
+class Router
+{
 	private static $url;
 	private static $controllerName;
 
-	public static function initialize() {
+	public static function initialize()
+	{
 		// Other page => '/example'
 		if (isset($_SERVER['PATH_INFO'])) {
 			$url = $_SERVER['PATH_INFO'];
@@ -24,7 +26,8 @@ class Router {
 		self::$controllerName = 'index';
 	}
 
-	public static function includeControllerFile() {
+	public static function includeControllerFile()
+	{
 		$controllersDirectory = __DIR__ . DIRECTORY_SEPARATOR . 'controllers' . DIRECTORY_SEPARATOR;
 		$controllerFileName = ucfirst(self::$controllerName) . 'Controller.php';
 		$controllerFilePath = $controllersDirectory . $controllerFileName;

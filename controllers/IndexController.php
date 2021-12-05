@@ -1,3 +1,6 @@
 <?php
 
-echo 'Index Controller';
+class IndexController
+{
+
+}

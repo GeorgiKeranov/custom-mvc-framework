@@ -1,3 +1,6 @@
 <?php 
 
-echo 'Login Controller';
+class LoginController
+{
+
+}
