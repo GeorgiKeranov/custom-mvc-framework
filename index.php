@@ -1,8 +1,6 @@
 <?php
+require_once('router.php');
 
-if (!isset($_SERVER['PATH_INFO'])) {
-	echo 'Home page';
-	exit();
-}
+Router::initialize();
 
-echo "Page: " . $_SERVER['PATH_INFO'];
+Router::includeControllerFile();
