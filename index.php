@@ -6,6 +6,3 @@ use app\core\Router;
 
 // Initialize the router
 Router::initialize();
-
-// Include controller based on the requested page
-Router::includeController();
