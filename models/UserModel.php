@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\core\Model;
+use app\core\Authentication;
 
 class UserModel extends Model
 {
@@ -84,5 +85,29 @@ class UserModel extends Model
 		}
 
 		return $user['id'];
+	}
+
+	public static function getUsers()
+	{
+		$user_authenticated_id = Authentication::getAuthenticatedUser();
+
+		// User is not authenticated
+		if (!$user_authenticated_id) {
+			return false;
+		}
+
+		// Get user with the given username
+		$query = 'SELECT id, username, email, date_created FROM users WHERE 1';
+		$results = self::executeQuery($query);
+		if ($results->num_rows === 0) {
+			return [];
+		}
+
+		$users = [];
+		while ($row = $results->fetch_assoc()) {
+			$users[] = $row;
+		}
+
+		return $users;
 	}
 }
