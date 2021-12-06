@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\core\Authentication;
 use app\models\UserModel;
 
 class LoginController extends Controller
@@ -15,18 +16,16 @@ class LoginController extends Controller
 	public function post()
 	{
 		$params = $_POST;
-		$errors = UserModel::checkUserCredentials($params);
+		$userId = UserModel::getUserIdByCredentials($params);
 
-		if ($errors) {
-			$params['errors'] = $errors;
+		if (is_array($userId)) {
+			$params['errors'] = $userId;
 
 			$this->render('login', $params);
 		}
 
-		echo 'User is authenticated';
-		exit();
-
 		// Authenticate the user
+		Authentication::saveAuthenticatedUser($userId);
 
 		$this->redirectToPage('users');
 	}

@@ -8,6 +8,10 @@ define('HOME_URL', '//' . $_SERVER['HTTP_HOST'] . explode('/index.php', $_SERVER
 require_once(MAIN_DIRECTORY . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php' );
 
 use app\core\Router;
+use app\core\Authentication;
 
-// Initialize the router
+// Intialize the Authentication
+Authentication::initialize();
+
+// Initialize the Router
 Router::initialize();

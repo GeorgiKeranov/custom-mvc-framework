@@ -57,7 +57,7 @@ class UserModel extends Model
 		return false;
 	}
 
-	public static function checkUserCredentials($credentials)
+	public static function getUserIdByCredentials($credentials)
 	{
 		// Validate fields
 		$required_fields = ['username', 'password'];
@@ -68,7 +68,7 @@ class UserModel extends Model
 		}
 
 		// Get user with the given username
-		$query = 'SELECT username, password FROM users WHERE username = ?';
+		$query = 'SELECT id, username, password FROM users WHERE username = ?';
 		$results = self::executeQuery($query, [$credentials['username']], 's');
 
 		// User not found
@@ -83,6 +83,6 @@ class UserModel extends Model
 			return ['error' => 'Bad credentials, please check your username and password, and try again!'];
 		}
 
-		return false;
+		return $user['id'];
 	}
 }

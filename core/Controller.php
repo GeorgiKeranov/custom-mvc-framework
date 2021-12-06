@@ -19,6 +19,8 @@ class Controller
 			$viewPath = $viewsFolder . $on_error_view;
 		}
 
+		$params['user_authenticated'] = Authentication::getAuthenticatedUser();
+
 		// Include the view file
 		include_once($viewPath);
 	}
