@@ -88,7 +88,7 @@ class Router
 			}
 		}
 
-		$controller = new self::$controllerClass;
+		$controller = new self::$controllerClass();
 		$controller->$methodName();
 	}
 
