@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>MVC Framework</title>
+		<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 	</head>
 
 	<body>
