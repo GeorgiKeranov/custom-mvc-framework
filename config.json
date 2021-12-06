@@ -1,0 +1,8 @@
+{
+	"database": {
+		"host": "localhost",
+		"username": "root",
+		"password": "kuku",
+		"database_name": "georgi_custom_mvc_framework"
+	}
+}
