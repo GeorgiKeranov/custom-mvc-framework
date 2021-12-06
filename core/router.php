@@ -36,10 +36,11 @@ class Router
 
 		// Controller class doesn't exists so get the index controller
 		if (!class_exists($controllerClass)) {
-			$controllerClass = $controllersNamespace . 'IndexController';
+			$controllerClass = $controllersNamespace . 'PageNotFoundController';
 		}
 
-		// Use the controller class
+		// Intialize the controller class
 		$controller = new $controllerClass();
+		$controller->get();
 	}
 }
