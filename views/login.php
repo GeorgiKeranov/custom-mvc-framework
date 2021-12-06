@@ -5,23 +5,39 @@
 		</div>
 	<?php endif; ?>
 
-	<form>
+	<?php if (!empty($params['errors']['error'])) : ?>
+		<div class="alert alert-danger" role="alert">
+			<?php echo $params['errors']['error'] ?>
+		</div>
+	<?php endif; ?>
+
+	<form method="POST">
 		<div class="form-group">
-			<label for="exampleInputEmail1">Email address</label>
-			<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-			<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+			<?php $is_username_error = !empty($params['errors']['username']); ?>
+
+			<label for="exampleInputUsername">Username</label>
+			<input type="username" name="username" class="form-control<?php echo $is_username_error ? ' is-invalid' : '' ?>" id="exampleInputUsername" aria-describedby="usernameHelp" placeholder="Username" value="<?php echo !empty($params['username']) ? $params['username'] : '' ?>">
+
+			<?php if ($is_username_error) : ?>
+				<div class="invalid-feedback">
+					<?php echo $params['errors']['username']; ?>
+				</div>
+			<?php endif; ?>
 		</div>
 
 		<div class="form-group">
+			<?php $is_password_error = !empty($params['errors']['password']); ?>
+
 			<label for="exampleInputPassword1">Password</label>
-			<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-		</div>
+			<input type="password" name="password" class="form-control<?php echo $is_password_error ? ' is-invalid' : '' ?>" id="exampleInputPassword1" placeholder="Password">
 
-		<div class="form-group form-check">
-			<input type="checkbox" class="form-check-input" id="exampleCheck1">
-			<label class="form-check-label" for="exampleCheck1">Check me out</label>
+			<?php if ($is_password_error) : ?>
+				<div class="invalid-feedback">
+					<?php echo $params['errors']['password']; ?>
+				</div>
+			<?php endif; ?>
 		</div>
 		
-		<button type="submit" class="btn btn-primary">Submit</button>
+		<button type="submit" class="btn btn-primary">Login</button>
 	</form>
 </div><!-- /.login-form -->

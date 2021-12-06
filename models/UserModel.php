@@ -6,7 +6,8 @@ use app\core\Model;
 
 class UserModel extends Model
 {
-	public static function registerUser($fields) {
+	public static function registerUser($fields)
+	{
 		// Validate fields
 		$required_fields = ['username', 'password', 'email'];
 		$errors = self::validateFields($required_fields, $fields);
@@ -35,7 +36,7 @@ class UserModel extends Model
 			return $errors;
 		}
 
-		// Encrypt the password
+		// Hash the password
 		$fields['password'] = password_hash($fields['password'], PASSWORD_BCRYPT);
 
 		// Get current date
@@ -52,6 +53,35 @@ class UserModel extends Model
 		// Register user
 		$query = 'INSERT INTO users (username, password, email, date_created) VALUES (?, ?, ?, ?)';
 		$results = self::executeQuery($query, $fields_values, 'ssss');
+
+		return false;
+	}
+
+	public static function checkUserCredentials($credentials)
+	{
+		// Validate fields
+		$required_fields = ['username', 'password'];
+		$errors = self::validateFields($required_fields, $credentials);
+
+		if ($errors) {
+			return $errors;
+		}
+
+		// Get user with the given username
+		$query = 'SELECT username, password FROM users WHERE username = ?';
+		$results = self::executeQuery($query, [$credentials['username']], 's');
+
+		// User not found
+		if ($results->num_rows === 0) {
+			return ['error' => 'Bad credentials, please check your username and password, and try again!'];
+		}
+
+		$user = $results->fetch_assoc();
+
+		// Password is not valid
+		if (!password_verify($credentials['password'], $user['password'])) {
+			return ['error' => 'Bad credentials, please check your username and password, and try again!'];
+		}
 
 		return false;
 	}
