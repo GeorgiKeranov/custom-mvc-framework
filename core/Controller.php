@@ -6,7 +6,7 @@ class Controller
 {
 	private function renderView($view, $on_error_view = false, $params = [])
 	{
-		$viewsFolder = MAIN_DIRECTORY . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR;
+		$viewsFolder = MAIN_DIRECTORY . 'views' . DIRECTORY_SEPARATOR;
 		$viewPath = $viewsFolder . $view . '.php';
 
 		if (!file_exists($viewPath)) {
@@ -30,6 +30,8 @@ class Controller
 		$this->renderView($view, '404', $params);
 
 		$this->renderView('parts/footer');
+
+		exit();
 	}
 
 	public function redirectToPage($page)
@@ -37,6 +39,7 @@ class Controller
 		$url = HOME_URL . $page;
 
 		header('Location: ' . $url);
+		
 		exit();
 	}
 }
