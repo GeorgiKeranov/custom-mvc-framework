@@ -14,10 +14,13 @@ class RegisterController extends Controller
 
 	public function post()
 	{
-		$errors = UserModel::registerUser();
+		$params = $_POST;
+		$errors = UserModel::registerUser($params);
 
 		if ($errors) {
-			$this->render('register', $errors);
+			$params['errors'] = $errors;
+
+			$this->render('register', $params);
 		}
 
 		$this->redirectToPage('login?registered=true');
