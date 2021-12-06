@@ -17,7 +17,7 @@ class Model
 		return $errors;
 	}
 
-	public static function executeQuery($query, $params, $paramsTypes)
+	public static function executeQuery($query, $params = [], $paramsTypes = '')
 	{
 		$database = Database::getInstance();
 

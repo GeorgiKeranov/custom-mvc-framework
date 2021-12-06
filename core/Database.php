@@ -53,10 +53,13 @@ class Database
 		return self::$instance;
 	}
 
-	public static function executeQuery($query, $params, $paramsTypes)
+	public static function executeQuery($query, $params = [], $paramsTypes = '')
 	{
 		$statement = self::$connection->prepare($query);
-		$statement->bind_param($paramsTypes, ...$params);
+
+		if (!empty($params)) {
+			$statement->bind_param($paramsTypes, ...$params);
+		}
 
 		$is_success = $statement->execute();
 
