@@ -9,6 +9,11 @@ class Authentication
 		session_start();
 	}
 
+	public static function removeAuthenticatedUser()
+	{
+		$_SESSION['user_id'] = false;
+	}
+
 	public static function saveAuthenticatedUser($user_id)
 	{
 		$_SESSION['user_id'] = $user_id;

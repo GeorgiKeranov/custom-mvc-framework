@@ -18,13 +18,25 @@
 
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
-						<li class="nav-item active">
-							<a class="nav-link" href="login">Login</span></a>
-						</li>
+						<?php if ($params['user_authenticated']) : ?>
+							<li class="nav-item">
+								<a class="nav-link" href="users">Users</span></a>
+							</li>
 
-						<li class="nav-item">
-							<a class="nav-link" href="register">Register</a>
-						</li>
+							<li class="nav-item">
+								<form action="logout" method="POST">
+									<input class="nav-link" type="submit" value="Logout">
+								</form>
+							</li>
+						<?php else : ?>
+							<li class="nav-item">
+								<a class="nav-link" href="login">Login</span></a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link" href="register">Register</a>
+							</li>
+						<?php endif; ?>
 					</ul>
 				</div>
 			</nav>
