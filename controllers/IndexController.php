@@ -8,6 +8,6 @@ class IndexController extends Controller
 {
 	public function get()
 	{
-		$this->render('home', ['test' => 'dsadasdsadsa string']);
+		$this->render('home');
 	}
 }
