@@ -2,9 +2,11 @@
 
 namespace app\controllers;
 
-class IndexController
+use app\core\Controller;
+
+class IndexController extends Controller
 {
 	public function get() {
-		echo 'hello from index controller';
+		$this->render('home', ['test' => 'dsadasdsadsa string']);
 	}
 }

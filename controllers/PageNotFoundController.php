@@ -2,9 +2,11 @@
 
 namespace app\controllers;
 
-class PageNotFoundController
+use app\core\Controller;
+
+class PageNotFoundController extends Controller
 {
 	public function get() {
-		echo 'hello from PageNotFoundController controller';
+		$this->render('404');
 	}
 }

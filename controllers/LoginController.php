@@ -2,9 +2,11 @@
 
 namespace app\controllers;
 
-class LoginController
+use app\core\Controller;
+
+class LoginController extends Controller
 {
 	public function get() {
-		echo 'hello from login controller';
+		$this->render('login');
 	}
 }
