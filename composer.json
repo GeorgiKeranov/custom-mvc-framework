@@ -1,0 +1,10 @@
+{
+    "name": "georgi/custom-mvc-framework",
+    "authors": [
+        {
+            "name": "Georgi",
+            "email": "georgy.keranov@gmail.com"
+        }
+    ],
+    "require": {}
+}
