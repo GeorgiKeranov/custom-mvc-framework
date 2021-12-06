@@ -4,21 +4,28 @@ namespace app\core;
 
 class Controller
 {
-	private function getViewPath($view) {
+	private function renderView($view, $render_error_view = true) {
 		$viewsFolder = MAIN_DIRECTORY . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR;
 		$viewPath = $viewsFolder . $view . '.php';
 
-		// View doesn't exists so return the views/404.php file
-		if(!file_exists($viewPath)) {
+		if (!file_exists($viewPath)) {
+			// Do not render nothing
+			if (!$render_error_view) {
+				return;
+			}
+
+			// View doesn't exists so return the views/404.php file
 			$viewPath = $viewsFolder . '404.php';
 		}
 
-		return $viewPath;
+		include_once($viewPath);
 	}
 
 	public function render($view, $params = []) {
-		$viewPath = $this->getViewPath($view);
+		$this->renderView('parts/header');
 
-		include_once($viewPath);
+		$this->renderView($view);
+
+		$this->renderView('parts/footer');
 	}
 }
