@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\core\Database;
 
-class UserModel {
+class UserModel
+{
 	
 }

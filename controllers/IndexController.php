@@ -6,7 +6,8 @@ use app\core\Controller;
 
 class IndexController extends Controller
 {
-	public function get() {
+	public function get()
+	{
 		$this->render('home', ['test' => 'dsadasdsadsa string']);
 	}
 }

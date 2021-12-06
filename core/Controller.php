@@ -4,7 +4,8 @@ namespace app\core;
 
 class Controller
 {
-	private function renderView($view, $on_error_view = false, $params = []) {
+	private function renderView($view, $on_error_view = false, $params = [])
+	{
 		$viewsFolder = MAIN_DIRECTORY . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR;
 		$viewPath = $viewsFolder . $view . '.php';
 
@@ -22,7 +23,8 @@ class Controller
 		include_once($viewPath);
 	}
 
-	public function render($view, $params = []) {
+	public function render($view, $params = [])
+	{
 		$this->renderView('parts/header');
 
 		$this->renderView($view, '404', $params);
@@ -30,7 +32,8 @@ class Controller
 		$this->renderView('parts/footer');
 	}
 
-	public function redirectToPage($page) {
+	public function redirectToPage($page)
+	{
 		$url = HOME_URL . $page;
 
 		header('Location: ' . $url);

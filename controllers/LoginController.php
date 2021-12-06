@@ -6,7 +6,8 @@ use app\core\Controller;
 
 class LoginController extends Controller
 {
-	public function get() {
+	public function get()
+	{
 		$this->render('login', $_GET);
 	}
 }

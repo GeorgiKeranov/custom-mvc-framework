@@ -6,7 +6,8 @@ use app\core\Controller;
 
 class PageNotFoundController extends Controller
 {
-	public function get() {
+	public function get()
+	{
 		$this->render('404');
 	}
 }
