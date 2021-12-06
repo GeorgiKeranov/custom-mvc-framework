@@ -73,7 +73,8 @@ class Router
 	}
 
 	// Dynamically call method name from dynamic class name
-	private static function callMethodFromController() {
+	private static function callMethodFromController()
+	{
 		$methodName = strtolower(self::$requestMethod);
 
 		$urlParams = self::$urlParams;
