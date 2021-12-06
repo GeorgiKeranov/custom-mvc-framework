@@ -1,10 +1,13 @@
 <?php
 
+namespace app\core;
+
 class Router
 {
 	private static $url;
 	private static $controllerName;
 
+	// Get controllerName based on the requested path
 	public static function initialize()
 	{
 		// Other page => '/example'
@@ -26,19 +29,17 @@ class Router
 		self::$controllerName = 'index';
 	}
 
-	public static function includeControllerFile()
+	public static function includeController()
 	{
-		$controllersDirectory = __DIR__ . DIRECTORY_SEPARATOR . 'controllers' . DIRECTORY_SEPARATOR;
-		$controllerFileName = ucfirst(self::$controllerName) . 'Controller.php';
-		$controllerFilePath = $controllersDirectory . $controllerFileName;
+		$controllersNamespace = 'app\controllers\\';
+		$controllerClass = $controllersNamespace . ucfirst(self::$controllerName) . 'Controller';
 
-		// Controller file doesn't exists so get the index controller
-		if (!file_exists($controllerFilePath)) {
-			$controllerFileName = 'IndexController.php';
-			$controllerFilePath = $controllersDirectory . $controllerFileName;
+		// Controller class doesn't exists so get the index controller
+		if (!class_exists($controllerClass)) {
+			$controllerClass = $controllersNamespace . 'IndexController';
 		}
 
-		// Include the controller file
-		require_once($controllerFilePath);
+		// Use the controller class
+		$controller = new $controllerClass();
 	}
 }
