@@ -2,8 +2,6 @@
 Custom MVC framework with Login and Register functionality built with PHP. The application itself is a simple registration + login app. After a successful login the
 user is redirected to a listing of all users. That's basically it!
 
-You can preview this simple application from here - https://gkeranov.com/advisetech
-
 ## Table of Contents
 - [Technologies used](#technologies-used)
 - [Functionalities](#functionalities)
